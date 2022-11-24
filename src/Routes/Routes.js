@@ -7,6 +7,7 @@ import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
 import Products from '../pages/Products/Products';
+import Register from '../pages/Register/Register';
 
 
 const Routes = () => {
@@ -23,6 +24,10 @@ const Routes = () => {
                 {
                     path: 'login',
                     element: <Login></Login>
+                },
+                {
+                    path: 'register',
+                    element: <Register></Register>
                 },
                 {
                     path: 'dashboard',

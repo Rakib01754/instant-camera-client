@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
     const handleLoginSubmit = data => console.log(data);
     return (
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
@@ -21,6 +21,7 @@ const Login = () => {
                         </label>
                         <input
                             type="email"
+                            placeholder="Your Email"
                             {...register("email", { required: true })}
                             className="block w-full px-4 py-2 mt-2 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         />
@@ -34,6 +35,7 @@ const Login = () => {
                         </label>
                         <input
                             type="password"
+                            placeholder="Your Password"
                             {...register("password", { required: true })}
                             className="block w-full px-4 py-2 mt-2bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         />
@@ -70,11 +72,11 @@ const Login = () => {
 
                 </div>
 
-                <p className="mt-8 text-xs font-light text-center text-gray-700">
+                <p className="mt-8 text-sm font-light text-center text-gray-700">
                     {" "}
                     Don't have an account?{" "}
                     <Link
-                        to="#"
+                        to="/register"
                         className="font-medium text-purple-600 hover:underline"
                     >
                         Sign up
@@ -87,10 +89,3 @@ const Login = () => {
 
 
 export default Login;
-
-{/* <form onSubmit={handleSubmit(onSubmit)}>
-<input type="email" placeholder="Email" {...register("Email", { required: true })} />
-<input type="password" placeholder="Password" {...register("Password", { required: true, min: 6, maxLength: 30 })} />
-
-<input type="submit" />
-</form> */}
