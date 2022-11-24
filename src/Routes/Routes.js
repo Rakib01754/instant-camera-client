@@ -24,11 +24,11 @@ const Routes = () => {
                     element: <Login></Login>
                 },
                 {
-                    path: '/',
+                    path: 'dashboard',
                     element: <Dashboard></Dashboard>
                 },
                 {
-                    path: '/',
+                    path: 'blogs',
                     element: <Blogs></Blogs>
                 },
 
