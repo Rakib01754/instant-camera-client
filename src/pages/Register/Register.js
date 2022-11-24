@@ -1,10 +1,52 @@
-import React from 'react';
+import { GoogleAuthProvider, updateProfile } from 'firebase/auth';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
+    const { signUp, googleSignIn } = useContext(AuthContext)
     const { register, handleSubmit } = useForm();
-    const handleRegisterSubmit = data => console.log(data);
+    const navigate = useNavigate()
+
+    const provider = new GoogleAuthProvider();
+
+    // email password register 
+    const handleRegisterSubmit = data => {
+        const name = data.name;
+        const email = data.email;
+        const userType = data.userType;
+        const password = data.password;
+        signUp(email, password)
+            .then(result => {
+                const user = result.user;
+                toast.success(`${userType} registtaion success`)
+                updateProfile(user, {
+                    displayName: name,
+                }).then(() => {
+                    toast.success(`Information Updated`)
+                    navigate('/')
+                })
+                    .catch((error) => {
+                        // An error occurred
+                        console.log(error)
+                    });
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                console.error(errorMessage)
+            })
+    };
+
+    // google login 
+    const handleGoogleLogin = () => {
+        googleSignIn(provider)
+            .then(result => {
+                toast.success('Google Login Successful')
+            })
+    }
+
     return (
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
             <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
@@ -78,6 +120,7 @@ const Register = () => {
                 </div>
                 <div className="flex mt-4 gap-x-2">
                     <button
+                        onClick={handleGoogleLogin}
                         type="button"
                         className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-violet-600"
                     >

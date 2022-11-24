@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaBars } from "react-icons/fa";
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext)
     const [navbarOpen, setNavbarOpen] = useState(false);
+
+    const handleLogOut = () => {
+        logOut()
+    }
     return (
         <div>
             <>
@@ -42,15 +48,30 @@ const Navbar = () => {
                                 </li>
 
                                 <li className="flex">
+                                    {
+                                        (user && user.uid) ?
+                                            <NavLink to="/login" className="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75 mt-2 md:mt-0 md:ml-4">
+                                                <span
+                                                    onClick={handleLogOut}
+                                                    className="block rounded-sm bg-white px-8 py-3 text-sm font-medium hover:bg-transparent"
+                                                >
+                                                    Logout
+                                                </span>
 
-                                    <NavLink to="/login" className="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75 mt-2 md:mt-0 md:ml-4">
-                                        <span
-                                            className="block rounded-sm bg-white px-8 py-3 text-sm font-medium hover:bg-transparent"
-                                        >
-                                            Login
-                                        </span>
+                                            </NavLink>
+                                            :
+                                            <NavLink to="/login" className="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75 mt-2 md:mt-0 md:ml-4">
+                                                <span
+                                                    className="block rounded-sm bg-white px-8 py-3 text-sm font-medium hover:bg-transparent"
+                                                >
+                                                    Login
+                                                </span>
 
-                                    </NavLink>
+                                            </NavLink>
+                                    }
+
+
+
 
                                 </li>
 

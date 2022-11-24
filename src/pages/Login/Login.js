@@ -1,10 +1,44 @@
-import React from 'react';
+import { GoogleAuthProvider } from 'firebase/auth';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
+    const { signIn, googleSignIn } = useContext(AuthContext)
     const { register, handleSubmit } = useForm();
-    const handleLoginSubmit = data => console.log(data);
+
+    const provider = new GoogleAuthProvider();
+
+    // email password login 
+    const handleLoginSubmit = data => {
+        const email = data.email;
+        const password = data.password;
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success(`Successfully Logged In`)
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+            })
+    };
+
+    // google login 
+    const handleGoogleLogin = () => {
+        googleSignIn(provider)
+            .then(result => {
+                toast.success('Google Login Successful')
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                toast.error(errorMessage);
+            })
+    }
+
     return (
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
             <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
@@ -57,6 +91,7 @@ const Login = () => {
                 </div>
                 <div className="flex mt-4 gap-x-2">
                     <button
+                        onClick={handleGoogleLogin}
                         type="button"
                         className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-violet-600"
                     >
