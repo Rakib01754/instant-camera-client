@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyA_b_MtwoQ0MzCYPcKM1zRCfGFv3nEA1Ew",
-    authDomain: "instant-camera-ff73c.firebaseapp.com",
-    projectId: "instant-camera-ff73c",
-    storageBucket: "instant-camera-ff73c.appspot.com",
-    messagingSenderId: "1015647446735",
-    appId: "1:1015647446735:web:f4c42e24f09814909679ba"
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_authDomain,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase

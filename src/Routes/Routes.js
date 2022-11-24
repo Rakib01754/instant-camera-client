@@ -6,6 +6,7 @@ import Dashboard from '../pages/Dashboard/Dashboard';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
+import Products from '../pages/Products/Products';
 
 
 const Routes = () => {
@@ -31,6 +32,10 @@ const Routes = () => {
                     path: 'blogs',
                     element: <Blogs></Blogs>
                 },
+                {
+                    path: 'category/:categoryId',
+                    element: <Products></Products>
+                }
 
             ]
         }

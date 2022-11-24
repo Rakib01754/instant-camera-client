@@ -32,7 +32,7 @@ const Banner = () => {
                     <div className="mt-8 flex flex-wrap gap-4 text-center">
                         <Link
                             to='/blogs'
-                            className="block w-full rounded bg-[#256D85] px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
+                            className="block w-full rounded bg-[#256D85] px-12 py-3 text-sm font-medium text-white shadow hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
                         >
                             More Details
                         </Link>
