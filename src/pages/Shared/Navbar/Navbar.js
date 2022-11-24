@@ -7,7 +7,7 @@ const Navbar = () => {
     return (
         <div>
             <>
-                <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-[#8BBCCC] text-black mb-3">
+                <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-[#256D85] text-black mb-3">
                     <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
                         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                             <NavLink to="/" aria-label="Back to homepage" className="flex items-center p-2">
@@ -34,16 +34,16 @@ const Navbar = () => {
                                 </li>
                                 <li className="flex">
                                     <NavLink to="/dashboard" className={({ isActive }) =>
-                                        isActive ? 'flex items-center px-4 -mb-1  text-[#8758FF]' : 'flex items-center px-4 -mb-1 border-b-2 border-transparent text-white'}>Dashboard</NavLink>
+                                        isActive ? 'flex items-center px-4 -mb-1 border-b-2 border-pink-500 text-white' : 'flex items-center px-4 -mb-1 border-b-2 border-transparent text-white'}>Dashboard</NavLink>
                                 </li>
                                 <li className="flex my-2">
                                     <NavLink to="/blogs" className={({ isActive }) =>
-                                        isActive ? 'flex items-center px-4 -mb-1 text-[#8758FF]' : 'flex items-center px-4 -mb-1 border-b-2 border-transparent text-white'}>Blogs</NavLink>
+                                        isActive ? 'flex items-center px-4 -mb-1 border-b-2 border-pink-500  text-white' : 'flex items-center px-4 -mb-1 border-b-2 border-transparent text-white'}>Blogs</NavLink>
                                 </li>
 
                                 <li className="flex">
 
-                                    <NavLink to="/login" className="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
+                                    <NavLink to="/login" className="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75 mt-2 md:mt-0 md:ml-4">
                                         <span
                                             className="block rounded-sm bg-white px-8 py-3 text-sm font-medium hover:bg-transparent"
                                         >
