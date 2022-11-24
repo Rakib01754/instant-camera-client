@@ -38,15 +38,17 @@ const Navbar = () => {
                                 <li className="flex my-2">
                                     <NavLink to="/" className="flex items-center px-4 -mb-1 border-b-2 border-transparent text-white">Home</NavLink>
                                 </li>
-                                <li className="flex">
-                                    <NavLink to="/dashboard" className={({ isActive }) =>
-                                        isActive ? 'flex items-center px-4 -mb-1 border-b-2 border-pink-500 text-white' : 'flex items-center px-4 -mb-1 border-b-2 border-transparent text-white'}>Dashboard</NavLink>
-                                </li>
+                                {
+                                    user &&
+                                    <li className="flex">
+                                        <NavLink to="/dashboard" className={({ isActive }) =>
+                                            isActive ? 'flex items-center px-4 -mb-1 border-b-2 border-pink-500 text-white' : 'flex items-center px-4 -mb-1 border-b-2 border-transparent text-white'}>Dashboard</NavLink>
+                                    </li>
+                                }
                                 <li className="flex my-2">
                                     <NavLink to="/blogs" className={({ isActive }) =>
                                         isActive ? 'flex items-center px-4 -mb-1 border-b-2 border-pink-500  text-white' : 'flex items-center px-4 -mb-1 border-b-2 border-transparent text-white'}>Blogs</NavLink>
                                 </li>
-
                                 <li className="flex">
                                     {
                                         (user && user.uid) ?

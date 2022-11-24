@@ -26,7 +26,8 @@ const Register = () => {
                     displayName: name,
                 }).then(() => {
                     toast.success(`Information Updated`)
-                    navigate('/')
+                    saveUserToDb(name, email, userType)
+
                 })
                     .catch((error) => {
                         // An error occurred
@@ -43,8 +44,36 @@ const Register = () => {
     const handleGoogleLogin = () => {
         googleSignIn(provider)
             .then(result => {
+                const user = result.user;
+                const name = user.displayName;
+                const email = user.email;
+                const userType = 'Buyer';
+                saveUserToDb(name, email, userType);
                 toast.success('Google Login Successful')
             })
+    }
+
+    // save user to database 
+
+    const saveUserToDb = (name, email, userType) => {
+        const registredUser = { name, email, userType }
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(registredUser)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    navigate('/')
+                }
+            })
+            .catch(error => {
+                console.error(error)
+            })
+
     }
 
     return (

@@ -2,12 +2,13 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
     const { signIn, googleSignIn } = useContext(AuthContext)
     const { register, handleSubmit } = useForm();
+    const navigate = useNavigate()
 
     const provider = new GoogleAuthProvider();
 
@@ -17,9 +18,8 @@ const Login = () => {
         const password = data.password;
         signIn(email, password)
             .then(result => {
-                const user = result.user;
-                console.log(user);
                 toast.success(`Successfully Logged In`)
+                navigate('/')
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -31,6 +31,11 @@ const Login = () => {
     const handleGoogleLogin = () => {
         googleSignIn(provider)
             .then(result => {
+                const user = result.user;
+                const name = user.displayName;
+                const email = user.email;
+                const userType = 'Buyer';
+                saveUserToDb(name, email, userType)
                 toast.success('Google Login Successful')
             })
             .catch(error => {
@@ -38,6 +43,30 @@ const Login = () => {
                 toast.error(errorMessage);
             })
     }
+
+    // save user to database 
+
+    const saveUserToDb = (name, email, userType) => {
+        const registredUser = { name, email, userType }
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(registredUser)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    navigate('/')
+                }
+            })
+            .catch(error => {
+                console.error(error)
+            })
+        navigate('/')
+    }
+
 
     return (
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
