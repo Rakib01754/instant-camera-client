@@ -4,8 +4,6 @@ import SingleCategory from './SingleCategory/SingleCategory';
 
 const Categories = () => {
     const [categories, setCategories] = useState([])
-
-
     // getting data by using axios 
     const url = "http://localhost:5000/categories"
     useEffect(() => {
