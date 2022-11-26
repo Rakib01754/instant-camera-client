@@ -27,7 +27,7 @@ const AddProduct = () => {
                     const categoryId = data.category;
                     const presentYear = (new Date().getFullYear())
                     const selectedYear = data.purchaseYear;
-                    const yearsOfUse = presentYear - selectedYear;
+                    let yearsOfUse = presentYear - selectedYear;
                     const name = data.productName;
                     const location = data.location;
                     const resalePrice = data.resalePrice;
@@ -38,6 +38,9 @@ const AddProduct = () => {
                     const description = data.description;
                     const postedTime = new Date().toLocaleString()
                     const email = filteredUser.email;
+                    if (yearsOfUse < 1) {
+                        yearsOfUse = 'Less Than 1 Year'
+                    }
 
 
                     const productData = {

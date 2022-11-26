@@ -1,9 +1,12 @@
 // import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import Loader from '../../components/Loader/Loader';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useUser from '../../hooks/useUser/useUser';
 
 const Dashboard = () => {
+    const { loading } = useContext(AuthContext)
     const [filterdUser] = useUser();
 
 
@@ -16,6 +19,9 @@ const Dashboard = () => {
     //         return data;
     //     }
     // })
+    if (loading) {
+        <Loader></Loader>
+    }
     return (
         <div className='flex flex-col md:flex-row'>
             <div className='w-full md:w-[20%]'>

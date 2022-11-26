@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const BookNowModal = ({ isOpen, setIsOpen, product }) => {
     const { user } = useContext(AuthContext)
@@ -20,8 +21,10 @@ const BookNowModal = ({ isOpen, setIsOpen, product }) => {
         const price = form.price.value;
         const location = form.location.value;
         const phone = form.phone.value;
+        const picture = product?.picture
 
         const bookNowData = {
+            picture,
             name,
             email,
             productName,
@@ -29,7 +32,22 @@ const BookNowModal = ({ isOpen, setIsOpen, product }) => {
             phone,
             location
         }
-        console.log(bookNowData)
+        fetch('http://localhost:5000/bookings', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(bookNowData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Booking Successfull')
+                }
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
 
     }
 
