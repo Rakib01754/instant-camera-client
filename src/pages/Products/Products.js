@@ -13,7 +13,6 @@ const Products = () => {
                     products.map(product => <SingleProduct key={product._id} product={product}></SingleProduct>)
                 }
             </div>
-
         </div>
     );
 };
