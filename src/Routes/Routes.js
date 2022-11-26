@@ -10,7 +10,6 @@ import HomePage from '../pages/Dashboard/HomePage/HomePage';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
-import MyBuyers from '../pages/MyBuyers/MyBuyers';
 import MyOrders from '../pages/MyOrders/MyOrders';
 import MyProducts from '../pages/MyProducts/MyProducts';
 import Products from '../pages/Products/Products';
@@ -56,11 +55,6 @@ const Routes = () => {
                         {
                             path: '/dashboard/myproducts',
                             element: <MyProducts></MyProducts>
-                        },
-                        {
-                            path: '/dashboard/mybuyers',
-                            element: <MyBuyers></MyBuyers>
-
                         },
                         {
                             path: '/dashboard/allsellers',

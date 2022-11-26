@@ -8,17 +8,6 @@ const MyProducts = () => {
     const [filteredUser] = useUser()
     const email = filteredUser.email;
 
-    // const [myProducts, setMyProducts] = useState([]);
-
-    // useEffect(() => {
-    //     axios.get(`http://localhost:5000/myproducts?email=${email}`)
-    //         .then(response => {
-    //             const data = response.data;
-    //             setMyProducts(data)
-    //         })
-
-    // }, [email])
-
     const { data: myProducts = [], refetch, isLoading } = useQuery({
         queryKey: [' myProducts', email],
         queryFn: async () => {

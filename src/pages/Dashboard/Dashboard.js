@@ -8,17 +8,6 @@ import useUser from '../../hooks/useUser/useUser';
 const Dashboard = () => {
     const { loading } = useContext(AuthContext)
     const [filterdUser] = useUser();
-
-
-
-    // const { data: filterdUser = {} } = useQuery({
-    //     queryKey: ['user'],
-    //     queryFn: async () => {
-    //         const res = await fetch(`http://localhost:5000/user?email=${user?.email}`)
-    //         const data = await res.json();
-    //         return data;
-    //     }
-    // })
     if (loading) {
         <Loader></Loader>
     }

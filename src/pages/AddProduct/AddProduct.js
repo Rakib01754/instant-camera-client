@@ -56,6 +56,7 @@ const AddProduct = () => {
                         mobileNumber,
                         description,
                         postedTime,
+                        isSold: 'false',
                         email
 
                     }

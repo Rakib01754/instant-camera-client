@@ -2,7 +2,7 @@ import React from 'react';
 import Swal from 'sweetalert2'
 
 const SingleProductRow = ({ product, idx, refetch }) => {
-    const { name, resalePrice, _id, advertise } = product;
+    const { name, resalePrice, _id, advertise, isSold } = product;
 
 
     // product delete 
@@ -71,7 +71,7 @@ const SingleProductRow = ({ product, idx, refetch }) => {
             <tr className="bg-gray-300 border border-grey-500 md:border-none block md:table-row text-left md:text-center">
                 <td className="p-2 md:border md:border-grey-500 block md:table-cell"><span className="inline-block w-1/3 md:hidden font-bold">Serial</span>{idx}</td>
                 <td className="p-2 md:border md:border-grey-500 block md:table-cell"><span className="inline-block w-1/3 md:hidden font-bold">Name</span>{name}</td>
-                <td className="p-2 md:border md:border-grey-500 block md:table-cell"><span className="inline-block w-1/3 md:hidden font-bold">Status</span>Unsold</td>
+                <td className="p-2 md:border md:border-grey-500 block md:table-cell"><span className="inline-block w-1/3 md:hidden font-bold">Status</span>{(isSold === 'true') ? 'Sold' : 'Available'}</td>
                 <td className="p-2 md:border md:border-grey-500 block md:table-cell"><span className="inline-block w-1/3 md:hidden font-bold">Price</span>{resalePrice}</td>
                 <td className="p-2 md:border md:border-grey-500 block md:table-cell">
                     <span className="inline-block w-1/3 md:hidden font-bold">Actions</span>
