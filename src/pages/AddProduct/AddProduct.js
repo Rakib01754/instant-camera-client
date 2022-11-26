@@ -1,9 +1,12 @@
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import useUser from '../../hooks/useUser/useUser';
 
 const AddProduct = () => {
     const [filteredUser] = useUser()
     const { register, handleSubmit } = useForm();
+    const navigate = useNavigate()
 
     // addproduct 
     const handleAddProduct = data => {
@@ -34,6 +37,7 @@ const AddProduct = () => {
                     const mobileNumber = data.phoneNumber;
                     const description = data.description;
                     const postedTime = new Date().toLocaleString()
+                    const email = filteredUser.email;
 
 
                     const productData = {
@@ -48,9 +52,28 @@ const AddProduct = () => {
                         condition,
                         mobileNumber,
                         description,
-                        postedTime
+                        postedTime,
+                        email
+
                     }
-                    console.log(productData);
+                    console.log(productData)
+                    fetch('http://localhost:5000/products', {
+                        method: "POST",
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(productData)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.acknowledged) {
+                                toast.success('Product Added Successfully');
+                                navigate('/dashboard/myproducts')
+                            }
+                        })
+                        .catch(error => {
+                            toast.error(error.message)
+                        })
                 }
             });
 
