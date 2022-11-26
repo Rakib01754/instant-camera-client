@@ -1,21 +1,24 @@
 import React from 'react';
+import useUser from '../../../hooks/useUser/useUser';
 
 const HomePage = () => {
+
+    const [filteredUser] = useUser();
     return (
-        <section className="bg-gray-50 mx-auto flex items-center justify-center">
+        <section className="bg-gray-50 mx-auto flex justify-center min-h-screen">
             <div
-                className="px-4 py-32"
+                className="px-4 py-16"
             >
                 <div className=''>
                     <h1 className="text-3xl font-extrabold sm:text-5xl">
-                        <span className=''>Dear UserType,</span> <br />
+                        <span className=''>Dear <span className='text-orange-500'>{filteredUser?.userType}</span>,</span> <br />
                         <strong className="font-extrabold text-[#256D85] sm:block">
                             WelCome To Dashboard
                         </strong>
                     </h1>
 
                     <p className="mt-4 sm:text-xl sm:leading-relaxed">
-                        You Can use more available option from the menu .
+                        You Can use more available option from Dashboard menu .
                     </p>
                 </div>
             </div>

@@ -82,6 +82,7 @@ const Routes = () => {
                 },
                 {
                     path: 'category/:categoryId',
+                    loader: ({ params }) => fetch(`http://localhost:5000/products/${params.categoryId}`),
                     element: <Products></Products>
                 }
 

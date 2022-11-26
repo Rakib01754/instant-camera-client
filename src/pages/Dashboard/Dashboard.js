@@ -1,19 +1,11 @@
 // import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useUser from '../../hooks/useUser/useUser';
 
 const Dashboard = () => {
-    const { user } = useContext(AuthContext)
+    const [filterdUser] = useUser();
 
-    const [filterdUser, setFiltereUser] = useState({})
-    useEffect(() => {
-        axios.get(`http://localhost:5000/user?email=${user?.email}`)
-            .then((response) => {
-                setFiltereUser(response.data);
-            });
-    }, [user?.email])
 
 
     // const { data: filterdUser = {} } = useQuery({
@@ -48,8 +40,6 @@ const Dashboard = () => {
                                         to="/dashboard/addproduct"
                                         className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                                     >
-
-
                                         <span className="ml-3 text-sm font-medium">Add A product</span>
                                     </Link>
                                     <Link
@@ -95,7 +85,7 @@ const Dashboard = () => {
                 </div>
 
             </div>
-            <div className='w-full md:w-[80%]'>
+            <div className='w-full md:w-[80%] border-2'>
                 <Outlet></Outlet>
             </div>
         </div>
