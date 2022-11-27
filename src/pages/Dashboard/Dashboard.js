@@ -3,16 +3,21 @@ import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import useUser from '../../hooks/useUser/useUser';
+import useAdmin from '../../hooks/useAdmin/useAdmin';
+import useBuyer from '../../hooks/useBuyer/useBuyer';
+import useSeller from '../../hooks/useSeller/useSeller';
 
 const Dashboard = () => {
-    const { loading } = useContext(AuthContext)
-    const [filterdUser] = useUser();
+    const { user, loading } = useContext(AuthContext)
+    const [isAdmin] = useAdmin(user?.email)
+    const [isSeller] = useSeller(user?.email)
+    const [isBuyer] = useBuyer(user?.email)
+
     if (loading) {
         <Loader></Loader>
     }
     return (
-        <div className='flex flex-col md:flex-row'>
+        <div className='flex flex-col md:flex-row px-4 lg:px-10'>
             <div className='w-full md:w-[20%]'>
                 <div className="flex md:h-screen flex-col justify-between border-r bg-white">
                     <div className="px-4 py-6">
@@ -20,7 +25,7 @@ const Dashboard = () => {
 
                         <nav aria-label="Main Nav" className="mt-6 flex flex-col space-y-1">
                             {
-                                (filterdUser?.userType === 'Buyer') &&
+                                isBuyer &&
                                 <Link
                                     to="/dashboard/myorders"
                                     className="flex items-center rounded-lg bg-gray-100 px-4 py-2 text-gray-700"
@@ -29,7 +34,7 @@ const Dashboard = () => {
                                 </Link>
                             }
                             {
-                                (filterdUser?.userType === 'Seller') &&
+                                isSeller &&
                                 <>
                                     <Link
                                         to="/dashboard/addproduct"
@@ -43,16 +48,10 @@ const Dashboard = () => {
                                     >
                                         <span className="ml-3 text-sm font-medium"> My Products </span>
                                     </Link>
-                                    <Link
-                                        to="/dashboard/mybuyers"
-                                        className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-                                    >
-                                        <span className="ml-3 text-sm font-medium">My Buyers</span>
-                                    </Link>
                                 </>
                             }
                             {
-                                (filterdUser?.userType === 'Admin') &&
+                                isAdmin &&
                                 <>
                                     <Link
                                         to="/dashboard/allbuyers"
@@ -72,7 +71,6 @@ const Dashboard = () => {
                                     >
                                         <span className="ml-3 text-sm font-medium">Reported Items</span>
                                     </Link>
-
                                 </>
                             }
                         </nav>

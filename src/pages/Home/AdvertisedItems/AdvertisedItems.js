@@ -18,8 +18,8 @@ const AdvertisedItems = () => {
     if (products.length > 0) {
         return (
             <div className='mx-4'>
-                <h1 className='text-5xl font-semibold text-left my-6'>Advertisements</h1>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+                <h1 className='text-5xl font-semibold my-6'>Advertisements</h1>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4 lg:px-10'>
                     {
                         products?.map(product => <SingleAdvertisement key={product._id} product={product}></SingleAdvertisement>)
                     }

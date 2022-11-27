@@ -1,11 +1,9 @@
 import React from 'react';
 import Swal from 'sweetalert2'
 
-const SingleProductRow = ({ product, idx, refetch }) => {
-    const { name, resalePrice, _id, advertise, isSold } = product;
-
-
-    // product delete 
+const SingleSellersRow = ({ seller, idx, refetch }) => {
+    const { name, email, _id, verified } = seller;
+    // seller delete 
     const handleDelete = id => {
         Swal.fire({
             title: 'Are you sure?',
@@ -17,7 +15,7 @@ const SingleProductRow = ({ product, idx, refetch }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/product/${id}`, {
+                fetch(`http://localhost:5000/seller/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -34,10 +32,9 @@ const SingleProductRow = ({ product, idx, refetch }) => {
             }
         })
     }
-    //product advertisement 
 
-
-    const handleAdvertise = id => {
+    // verify seller 
+    const handleVerify = id => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -45,18 +42,18 @@ const SingleProductRow = ({ product, idx, refetch }) => {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Advertise it!'
+            confirmButtonText: 'Yes, Verify it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/product/${id}`, {
+                fetch(`http://localhost:5000/seller/${id}`, {
                     method: 'PUT'
                 })
                     .then(res => res.json())
                     .then(data => {
                         if (data.acknowledged) {
                             Swal.fire(
-                                'Advertised!',
-                                'Your file is Advertised.',
+                                'Verified!',
+                                'User Is Verified Now.',
                                 'success'
                             )
                             refetch()
@@ -65,23 +62,21 @@ const SingleProductRow = ({ product, idx, refetch }) => {
             }
         })
     }
-
     return (
         <>
             <tr className="bg-gray-300 border border-grey-500 md:border-none block md:table-row text-left md:text-center">
                 <td className="p-2 md:border md:border-grey-500 block md:table-cell"><span className="inline-block w-1/3 md:hidden font-bold">Serial</span>{idx}</td>
                 <td className="p-2 md:border md:border-grey-500 block md:table-cell"><span className="inline-block w-1/3 md:hidden font-bold">Name</span>{name}</td>
-                <td className="p-2 md:border md:border-grey-500 block md:table-cell"><span className="inline-block w-1/3 md:hidden font-bold">Status</span>{(isSold === 'true') ? 'Sold' : 'Available'}</td>
-                <td className="p-2 md:border md:border-grey-500 block md:table-cell"><span className="inline-block w-1/3 md:hidden font-bold">Price</span>{resalePrice}</td>
+                <td className="p-2 md:border md:border-grey-500 block md:table-cell"><span className="inline-block w-1/3 md:hidden font-bold">Status</span>{email}</td>
                 <td className="p-2 md:border md:border-grey-500 block md:table-cell">
-                    <span className="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                    <span className="inline-block w-1/3 md:hidden font-bold">Action</span>
                     {
-                        (advertise) ? <button
-                            className="bg-[#256D85]  text-white font-bold py-1 px-2 border border-blue-500 rounded disabled">Advertised ✔️</button>
+                        (verified) ? <button
+                            className="bg-[#256D85]  text-white font-bold py-1 px-2 border border-blue-500 rounded disabled">Verified ✔️</button>
                             :
                             <button
-                                onClick={() => handleAdvertise(_id)}
-                                className="bg-[#256D85]  text-white font-bold py-1 px-2 border border-blue-500 rounded disabled">Make Advertise</button>
+                                onClick={() => handleVerify(_id)}
+                                className="bg-[#256D85]  text-white font-bold py-1 px-2 border border-blue-500 rounded disabled">Verify user</button>
                     }
                     <button
                         onClick={() => handleDelete(_id)}
@@ -92,4 +87,4 @@ const SingleProductRow = ({ product, idx, refetch }) => {
     );
 };
 
-export default SingleProductRow;
+export default SingleSellersRow;

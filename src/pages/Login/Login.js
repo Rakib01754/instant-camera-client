@@ -2,14 +2,16 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const { signIn, googleSignIn } = useContext(AuthContext)
+    const { signIn, googleSignIn, forgotPass } = useContext(AuthContext)
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate()
-
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+    console.log(location, from)
     const provider = new GoogleAuthProvider();
 
     // email password login 
@@ -19,7 +21,7 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 toast.success(`Successfully Logged In`)
-                navigate('/')
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -37,11 +39,26 @@ const Login = () => {
                 const userType = 'Buyer';
                 saveUserToDb(name, email, userType)
                 toast.success('Google Login Successful')
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 const errorMessage = error.message;
                 toast.error(errorMessage);
             })
+    }
+
+    const handleForgotPassword = () => {
+        const email = prompt('Enter Registred Email For Password Reset')
+        forgotPass(email)
+            .then(() => {
+                // Password reset email sent!
+                toast.success('Password Reset Email Sent')
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+                // ..
+            });
     }
 
     // save user to database 
@@ -58,13 +75,12 @@ const Login = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    navigate('/')
+                    console.log(data.acknowledged)
                 }
             })
             .catch(error => {
                 console.error(error)
             })
-        navigate('/')
     }
 
 
@@ -105,6 +121,7 @@ const Login = () => {
                     </div>
                     <Link
                         to="#"
+                        onClick={handleForgotPassword}
                         className="text-xs text-[#256D85]  hover:underline"
                     >
                         Forget Password?

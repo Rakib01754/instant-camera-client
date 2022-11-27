@@ -132,7 +132,7 @@ const Register = () => {
                         >
                             What Type Account You Want to open?
                         </label>
-                        <select className=" w-[50%] px-4 py-2 mt-2bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" {...register("userType", { required: true })}>
+                        <select className=" w-full px-4 py-2 mt-2bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" {...register("userType", { required: true })}>
                             <option value="Buyer">Buyer</option>
                             <option value="Seller">Seller</option>
                         </select>

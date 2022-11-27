@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import Loader from '../../components/Loader/Loader';
-import useUser from '../../hooks/useUser/useUser';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import SingleProductRow from './SingleProductRow/SingleProductRow';
 
 const MyProducts = () => {
-    const [filteredUser] = useUser()
-    const email = filteredUser.email;
+    const { user } = useContext(AuthContext)
+    const email = user.email;
 
     const { data: myProducts = [], refetch, isLoading } = useQuery({
         queryKey: [' myProducts', email],

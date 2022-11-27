@@ -1,10 +1,11 @@
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import useUser from '../../hooks/useUser/useUser';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const AddProduct = () => {
-    const [filteredUser] = useUser()
+    const { user } = useContext(AuthContext)
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate()
 
@@ -32,12 +33,12 @@ const AddProduct = () => {
                     const location = data.location;
                     const resalePrice = data.resalePrice;
                     const originalPrice = data.originalPrice;
-                    const sellerName = filteredUser.name;
+                    const sellerName = user.displayName;
                     const condition = data.condition;
                     const mobileNumber = data.phoneNumber;
                     const description = data.description;
                     const postedTime = new Date().toLocaleString()
-                    const email = filteredUser.email;
+                    const email = user.email;
                     if (yearsOfUse < 1) {
                         yearsOfUse = 'Less Than 1 Year'
                     }

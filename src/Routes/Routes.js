@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from '../layout/Main/Main';
 import AddProduct from '../pages/AddProduct/AddProduct';
+import AdminRoute from '../pages/AdminRoute/AdminRoute';
 import AllBuyers from '../pages/AllBuyers/AllBuyers';
 import AllSellers from '../pages/AllSellers/AllSellers';
 import Blogs from '../pages/Blogs/Blogs';
@@ -12,9 +13,11 @@ import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
 import MyOrders from '../pages/MyOrders/MyOrders';
 import MyProducts from '../pages/MyProducts/MyProducts';
+import PrivateRoute from '../pages/PrivateRoute/PrivateRoute';
 import Products from '../pages/Products/Products';
 import Register from '../pages/Register/Register';
 import ReportedItems from '../pages/ReportedItems/ReportedItems';
+import SellerRoute from '../pages/SellerRoute/SellerRoute';
 
 
 const Routes = () => {
@@ -38,7 +41,7 @@ const Routes = () => {
                 },
                 {
                     path: 'dashboard',
-                    element: <Dashboard></Dashboard>,
+                    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
                     children: [
                         {
                             path: '/dashboard',
@@ -50,23 +53,23 @@ const Routes = () => {
                         },
                         {
                             path: '/dashboard/addproduct',
-                            element: <AddProduct></AddProduct>
+                            element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
                         },
                         {
                             path: '/dashboard/myproducts',
-                            element: <MyProducts></MyProducts>
+                            element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
                         },
                         {
                             path: '/dashboard/allsellers',
-                            element: <AllSellers></AllSellers>
+                            element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
                         },
                         {
                             path: '/dashboard/allbuyers',
-                            element: <AllBuyers></AllBuyers>
+                            element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
                         },
                         {
                             path: '/dashboard/reporteditems',
-                            element: <ReportedItems></ReportedItems>
+                            element: <AdminRoute><ReportedItems></ReportedItems></AdminRoute>
                         },
                     ]
                 },
@@ -77,7 +80,7 @@ const Routes = () => {
                 {
                     path: 'category/:categoryId',
                     loader: ({ params }) => fetch(`http://localhost:5000/products/${params.categoryId}`),
-                    element: <Products></Products>
+                    element: <PrivateRoute><Products></Products></PrivateRoute>
                 }
 
             ]

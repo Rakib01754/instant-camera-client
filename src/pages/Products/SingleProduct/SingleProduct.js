@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import BookNowModal from '../../BookNowModal/BookNowModal';
+import PrivateRoute from '../../PrivateRoute/PrivateRoute';
+
+
 const SingleProduct = ({ product }) => {
 
     let [isOpen, setIsOpen] = useState(false)
@@ -18,7 +21,7 @@ const SingleProduct = ({ product }) => {
                         <p><span className='font-semibold text-lg'>Location: </span>{location}</p>
                         <p><span className='font-semibold text-lg'>Original Price:</span> $ {originalPrice}</p>
                         <p><span className='font-semibold text-lg'>Used For:</span> {yearsOfUse} Year</p>
-                        <p><span className='font-semibold text-lg'>Seller:</span> {sellerName}</p>
+                        <p><span className='font-semibold text-lg'>Seller:</span> {sellerName} </p>
                         <p ><span className='font-semibold text-lg'>Posted on:</span> {postedTime}</p>
                         <p className='font-bold text-xl text-[#256D85]'><span className='font-semibold text-lg'>Price:</span> $ {resalePrice}</p>
                     </>
@@ -28,12 +31,14 @@ const SingleProduct = ({ product }) => {
                     </button>
                 </div>
             </div>
-            <BookNowModal
-                openModal={openModal}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                product={product}
-            ></BookNowModal>
+            <PrivateRoute>
+                <BookNowModal
+                    openModal={openModal}
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    product={product}
+                ></BookNowModal>
+            </PrivateRoute>
         </>
     );
 };

@@ -1,9 +1,15 @@
-import React from 'react';
-import useUser from '../../../hooks/useUser/useUser';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const HomePage = () => {
+    const { user } = useContext(AuthContext)
+    const [currentUser, setCurrentUser] = useState()
 
-    const [filteredUser] = useUser();
+    useEffect(() => {
+        fetch(`http://localhost:5000/user?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => setCurrentUser(data))
+    }, [user?.email])
     return (
         <section className="bg-gray-50 mx-auto flex justify-center min-h-screen">
             <div
@@ -11,7 +17,7 @@ const HomePage = () => {
             >
                 <div className=''>
                     <h1 className="text-3xl font-extrabold sm:text-5xl">
-                        <span className=''>Dear <span className='text-orange-500'>{filteredUser?.userType}</span>,</span> <br />
+                        <span className=''>Dear <span className='text-orange-500'>{currentUser?.userType}</span>,</span> <br />
                         <strong className="font-extrabold text-[#256D85] sm:block">
                             WelCome To Dashboard
                         </strong>

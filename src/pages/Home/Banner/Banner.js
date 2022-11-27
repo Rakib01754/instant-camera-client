@@ -14,7 +14,7 @@ const Banner = () => {
             ></div>
 
             <div
-                className="relative mx-auto px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
+                className="relative mx-auto px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-10"
             >
                 <div className="text-center sm:text-left">
                     <h1 className="text-3xl font-extrabold sm:text-6xl">
