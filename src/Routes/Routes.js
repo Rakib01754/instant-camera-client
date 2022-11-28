@@ -16,8 +16,11 @@ import MyProducts from '../pages/MyProducts/MyProducts';
 import PrivateRoute from '../pages/PrivateRoute/PrivateRoute';
 import Products from '../pages/Products/Products';
 import Register from '../pages/Register/Register';
-import ReportedItems from '../pages/ReportedItems/ReportedItems';
 import SellerRoute from '../pages/SellerRoute/SellerRoute';
+import BuyerRoute from '../pages/BuyerRoute/BuyerRoute';
+import AdvertiseDetails from '../pages/Home/AdvertisedItems/AdvertiseDetails/AdvertiseDetails';
+import AllProducts from '../pages/AllProducts/AllProducts';
+import ReportedItems from '../pages/ReportedItems/ReportedItems';
 
 
 const Routes = () => {
@@ -49,7 +52,7 @@ const Routes = () => {
                         },
                         {
                             path: '/dashboard/myorders',
-                            element: <MyOrders></MyOrders>
+                            element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
                         },
                         {
                             path: '/dashboard/addproduct',
@@ -78,9 +81,19 @@ const Routes = () => {
                     element: <Blogs></Blogs>
                 },
                 {
+                    path: 'allproducts',
+                    loader: () => fetch(`http://localhost:5000/products`),
+                    element: <PrivateRoute><AllProducts></AllProducts></PrivateRoute>
+                },
+                {
                     path: 'category/:categoryId',
                     loader: ({ params }) => fetch(`http://localhost:5000/products/${params.categoryId}`),
                     element: <PrivateRoute><Products></Products></PrivateRoute>
+                },
+                {
+                    path: 'advertisement/:advertiseId',
+                    loader: ({ params }) => fetch(`http://localhost:5000/advertisement/${params.advertiseId}`),
+                    element: <AdvertiseDetails></AdvertiseDetails>
                 }
 
             ]

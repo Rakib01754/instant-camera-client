@@ -1,38 +1,35 @@
-import React, { useState } from 'react';
-import BookNowModal from '../../../BookNowModal/BookNowModal';
+import { Link } from 'react-router-dom';
 
 const SingleAdvertisement = ({ product }) => {
-    let [isOpen, setIsOpen] = useState(false)
-    function openModal() {
-        setIsOpen(true)
-    }
-    const { picture, name, location, resalePrice, originalPrice, yearsOfUse, sellerName, postedTime } = product;
+    console.log(product)
+    const { picture, name, resalePrice, _id } = product
     return (
         <div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg shadow-md text-left">
-                <img className="w-full mx-auto p-2 h-[300px] border bg-gray-400" src={picture} alt="" />
-                <div className="px-6 py-2">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{name}</h5>
-                    <>
-                        <p><span className='font-semibold text-lg'>Location: </span>{location}</p>
-                        <p><span className='font-semibold text-lg'>Original Price:</span> $ {originalPrice}</p>
-                        <p><span className='font-semibold text-lg'>Used For:</span> {yearsOfUse} Year</p>
-                        <p><span className='font-semibold text-lg'>Seller:</span> {sellerName}</p>
-                        <p ><span className='font-semibold text-lg'>Posted on:</span> {postedTime}</p>
-                        <p className='font-bold text-xl text-[#256D85]'><span className='font-semibold text-lg'>Price:</span> $ {resalePrice}</p>
-                    </>
-                    <button onClick={openModal} className="inline-flex items-center px-3 py-2 my-2 font-medium text-center text-white bg-[#256D85] rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                        Book Now
-                        <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
-                    </button>
+            <div className="bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
+
+                <img className="w-full h-[300px] rounded-xl bg-gray-400" src={picture} alt={name} />
+                <h1 className="mt-2 text-gray-800 text-2xl font-bold cursor-pointer">{name}</h1>
+                <div className="my-4">
+                    <div className="text-center">
+                        <p className='font-bold text-xl text-[#256D85]'><span className='font-semibold text-lg text-black'>Price:</span> $ {resalePrice}</p>
+                    </div>
+                    <div className='flex gap-2 justify-between'>
+                        <Link to='/allproducts'>
+                            <button className="inline-flex items-center px-3 py-2 my-2 font-medium text-center text-white bg-[#256D85] rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                See All Proudct
+                                <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+                            </button>
+                        </Link>
+                        <Link to={`/advertisement/${_id}`}>
+                            <button className="inline-flex items-center px-3 py-2 my-2 font-medium text-center text-white bg-[#256D85] rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                Details
+                                <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+                            </button>
+                        </Link>
+                    </div>
+
                 </div>
             </div>
-            <BookNowModal
-                openModal={openModal}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                product={product}
-            ></BookNowModal>
         </div>
     );
 };

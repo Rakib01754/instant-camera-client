@@ -48,7 +48,7 @@ const SingleProductRow = ({ product, idx, refetch }) => {
             confirmButtonText: 'Yes, Advertise it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/product/${id}`, {
+                fetch(`http://localhost:5000/advertise/${id}`, {
                     method: 'PUT'
                 })
                     .then(res => res.json())

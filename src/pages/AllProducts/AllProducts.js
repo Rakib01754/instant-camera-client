@@ -1,11 +1,11 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle/useTitle';
-import SingleProduct from './SingleProduct/SingleProduct';
+import SingleProduct from '../Products/SingleProduct/SingleProduct';
 
-const Products = () => {
+const AllProducts = () => {
     useTitle('Products')
-    const products = useLoaderData();
+    const allProducts = useLoaderData();
 
     return (
         <div className='text-center'>
@@ -15,11 +15,11 @@ const Products = () => {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 lg:px-10 md:px-4 space-y-4 md:space-y-0'>
                 {
-                    products.map(product => <SingleProduct key={product._id} product={product}></SingleProduct>)
+                    allProducts.map(product => <SingleProduct key={product._id} product={product}></SingleProduct>)
                 }
             </div>
         </div>
     );
 };
 
-export default Products;
+export default AllProducts;

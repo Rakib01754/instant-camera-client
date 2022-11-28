@@ -30,6 +30,7 @@ const BookNowModal = ({ isOpen, setIsOpen, product }) => {
             productName,
             price,
             phone,
+            isSold: 'false',
             location
         }
         fetch('http://localhost:5000/bookings', {

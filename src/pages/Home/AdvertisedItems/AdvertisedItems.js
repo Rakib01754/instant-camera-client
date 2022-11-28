@@ -12,14 +12,15 @@ const AdvertisedItems = () => {
             return data;
         }
     })
+    console.log(products)
     if (isLoading) {
         <Loader></Loader>
     }
     if (products.length > 0) {
         return (
-            <div className='mx-4'>
-                <h1 className='text-5xl font-semibold my-6'>Advertisements</h1>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4 lg:px-10'>
+            <div className='mx-4 bg-gray-200 my-6'>
+                <h1 className='text-5xl font-semibold underline py-4'>Advertisements</h1>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-4 lg:px-10 shadow-lg'>
                     {
                         products?.map(product => <SingleAdvertisement key={product._id} product={product}></SingleAdvertisement>)
                     }

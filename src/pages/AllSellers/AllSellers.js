@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Loader from '../../components/Loader/Loader';
+import useTitle from '../../hooks/useTitle/useTitle';
 import SingleSellersRow from './SingleSellersRow/SingleSellersRow';
 
 const AllSellers = () => {
+    useTitle('All Seller')
     const { data: sellers = [], refetch, isLoading } = useQuery({
         queryKey: [' sellers'],
         queryFn: async () => {
@@ -17,7 +19,7 @@ const AllSellers = () => {
     }
     return (
         <div className='my-8 mx-2'>
-            <h1 className='font-bold text-4xl my-4'>Total Buyers : {sellers?.length}</h1>
+            <h1 className='font-bold text-4xl my-4'>Total Sellers : {sellers?.length}</h1>
             <table className="min-w-full border-collapse block md:table">
                 <thead className="block md:table-header-group">
                     <tr className="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative text-center">

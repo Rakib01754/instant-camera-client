@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const SingleCategory = ({ category }) => {
     const { categoryId, name, picture } = category;
     return (
-        <Link to={`/category/${categoryId}`} className="group relative block bg-black rounded-lg shadow-lg">
+        <Link to={`/category/${categoryId}`} className="group relative block bg-black shadow-lg">
             <img
                 alt="Developer"
                 src={picture}

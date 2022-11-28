@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../../hooks/useTitle/useTitle';
 
 const HomePage = () => {
+    useTitle('Dashboard')
     const { user } = useContext(AuthContext)
     const [currentUser, setCurrentUser] = useState()
 

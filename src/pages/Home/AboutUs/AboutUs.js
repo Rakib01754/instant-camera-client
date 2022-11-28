@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 const AboutUs = () => {
     return (
-        <section className='mx-4'>
-            <h1 className='text-5xl font-semibold my-6'>About Us</h1>
-            <div className=" px-2 py-4 lg:px-10 border">
+        <section className='mx-4 bg-gray-200'>
+            <h1 className='text-5xl font-semibold my-6 underline border-white py-4'>About Us</h1>
+            <div className=" px-2 py-4 lg:px-10 border shadow-lg">
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
                     <div
                         className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full"
@@ -37,9 +37,9 @@ const AboutUs = () => {
                                 stroke="currentColor"
                             >
                                 <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                     d="M17 8l4 4m0 0l-4 4m4-4H3"
                                 />
                             </svg>

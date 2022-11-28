@@ -28,7 +28,7 @@ const Dashboard = () => {
                                 isBuyer &&
                                 <Link
                                     to="/dashboard/myorders"
-                                    className="flex items-center rounded-lg bg-gray-100 px-4 py-2 text-gray-700"
+                                    className="flex items-center rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700"
                                 >
                                     <span className="ml-3 text-sm font-medium"> My Orders </span>
                                 </Link>
@@ -69,7 +69,7 @@ const Dashboard = () => {
                                         to="/dashboard/reporteditems"
                                         className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                                     >
-                                        <span className="ml-3 text-sm font-medium">Reported Items</span>
+                                        <span className="ml-3 text-sm font-medium">Reported Item</span>
                                     </Link>
                                 </>
                             }

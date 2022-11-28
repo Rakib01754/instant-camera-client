@@ -17,7 +17,7 @@ const Navbar = () => {
                     <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
                         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                             <NavLink to="/" aria-label="Back to homepage" className="flex items-center p-2">
-                                <h1 className='text-2xl md:text-4xl font-bold text-white'>Instant Camera</h1>
+                                <h1 className='text-2xl md:text-4xl font-bold text-white'>Capture Point</h1>
                             </NavLink>
                             <button
                                 className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
