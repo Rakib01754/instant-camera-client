@@ -25,28 +25,33 @@ const Register = () => {
         signUp(email, password)
             .then(result => {
                 const user = result.user;
+                const currentUser = {
+                    email: user.email
+                }
                 toast.success(`${userType} registtaion success`)
                 updateProfile(user, {
                     displayName: name,
-                }).then(() => {
-                    fetch("http://localhost:5000/jwt", {
-                        method: "POST",
-                        headers: {
-                            "content-type": "application/json",
-                        },
-                        body: JSON.stringify({ email: user.email }),
-                    })
-                        .then((res) => res.json())
-                        .then((data) => {
-                            console.log(data);
-                            // set localStorage
-                            localStorage.setItem("camera-token", data.token);
-                            navigate('/')
-                        });
-                    toast.success(`Information Updated`)
-                    saveUserToDb(name, email, userType)
-
                 })
+                    .then(() => {
+                        fetch('http://localhost:5000/jwt', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(currentUser)
+
+                        })
+                            .then((res) => res.json())
+                            .then((data) => {
+                                console.log(data);
+                                // set localStorage
+                                localStorage.setItem("token", data.token);
+                                toast.success(`Information Updated`)
+                                navigate('/')
+                            });
+                        saveUserToDb(name, email, userType)
+
+                    })
                     .catch((error) => {
                         // An error occurred
                         console.log(error)
@@ -66,22 +71,25 @@ const Register = () => {
                 const name = user.displayName;
                 const email = user.email;
                 const userType = 'Buyer';
-                saveUserToDb(name, email, userType);
+                const currentUser = {
+                    email: email
+                }
                 fetch("http://localhost:5000/jwt", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
                     },
-                    body: JSON.stringify({ email: user.email }),
+                    body: JSON.stringify(currentUser),
                 })
                     .then((res) => res.json())
                     .then((data) => {
                         console.log(data);
                         // set localStorage
-                        localStorage.setItem("camera-token", data.token);
+                        localStorage.setItem("token", data.token);
+                        toast.success('Google Login Successful')
                         navigate('/')
                     });
-                toast.success('Google Login Successful')
+                saveUserToDb(name, email, userType);
             })
             .catch(error => {
                 const errorMessage = error.message;

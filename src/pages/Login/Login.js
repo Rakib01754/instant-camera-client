@@ -23,11 +23,24 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 const user = result.user
-                console.log(user)
-                toast.success(`Successfully Logged In`)
-                navigate(from, { replace: true });
+                const currentUser = {
+                    email: user.email
+                }
+                console.log(currentUser)
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
 
-
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        localStorage.setItem('token', data.token)
+                        navigate(from, { replace: true });
+                    })
 
             })
             .catch(error => {
@@ -44,10 +57,22 @@ const Login = () => {
                 const name = user.displayName;
                 const email = user.email;
                 const userType = 'Buyer';
+                const currentUser = {
+                    email: user.email
+                }
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        localStorage.setItem('token', data.token)
+                    })
                 saveUserToDb(name, email, userType)
-                toast.success('Google Login Successful')
-                navigate(from, { replace: true });
-
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -83,6 +108,7 @@ const Login = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
+                    navigate(from, { replace: true });
                 }
             })
             .catch(error => {

@@ -15,6 +15,11 @@ Live Website link: https://instant-camera-ff73c.web.app/
  - All The Codes are pushed on Github Private Repo
  - Finally This site hosted on Firebase
 
+adminEmail: admin@email.com
+
+adminPassword: admin123
+
+
 
 ## Author
 
