@@ -20,6 +20,7 @@ const MyOrders = () => {
     if (isLoading) {
         return <Loader></Loader>
     }
+    console.log(myorders)
     return (
         <div className='my-8 mx-2'>
             <h1 className='font-bold text-4xl my-4'>My Total Orders : {myorders?.length}</h1>

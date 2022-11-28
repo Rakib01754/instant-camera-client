@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import BookNowModal from '../../BookNowModal/BookNowModal';
 
 
 const SingleProduct = ({ product }) => {
-    const { picture, name, location, resalePrice, originalPrice, yearsOfUse, sellerName, postedTime, _id } = product;
+    const { picture, name, location, resalePrice, originalPrice, yearsOfUse, sellerName, postedTime, _id, paid, email } = product;
     let [isOpen, setIsOpen] = useState(false)
     function openModal() {
         setIsOpen(true)
     }
+
+    const [isVerified, setIsVerified] = useState('')
+
     const reportToAdmin = (id) => {
         fetch(`http://localhost:5000/product/report/${id}`, {
             method: 'PUT',
@@ -19,13 +22,25 @@ const SingleProduct = ({ product }) => {
                     toast.success('Product Is Reported')
                 }
             })
+            .catch(error => console.error(error))
     }
 
 
-
+    useEffect(() => {
+        if (email) {
+            fetch(`http://localhost:5000/verifiedseller?email=${email}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    setIsVerified(data.verified)
+                })
+                .catch(error => console.error(error))
+        }
+    }, [email])
     return (
         <>
-            <div className="bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
+            <div className={`bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500
+            ${paid && 'hidden'}`}>
 
                 <img className="w-full h-[300px] rounded-xl bg-gray-400" src={picture} alt={name} />
                 <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">{name}</h1>
@@ -40,7 +55,7 @@ const SingleProduct = ({ product }) => {
                         <p><span className='font-semibold text-lg'>Used For:</span> {yearsOfUse} Year</p>
                     </div>
                     <div className="flex space-x-1 items-center">
-                        <p><span className='font-semibold text-lg'>Seller:</span> {sellerName} </p>
+                        <p><span className='font-semibold text-lg'>Seller:</span> {sellerName} <span className='text-green-500'>{isVerified && 'Verified✔️'}</span> </p>
                     </div>
                     <div className="flex space-x-1 items-center">
                         <p ><span className='font-semibold text-lg'>Posted on:</span> {postedTime}</p>

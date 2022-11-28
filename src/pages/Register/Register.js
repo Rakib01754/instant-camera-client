@@ -6,13 +6,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../hooks/useTitle/useTitle';
 
+
 const Register = () => {
     useTitle('Register')
+
 
     const { signUp, googleSignIn } = useContext(AuthContext)
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate()
-
     const provider = new GoogleAuthProvider();
 
     // email password register 
@@ -28,6 +29,20 @@ const Register = () => {
                 updateProfile(user, {
                     displayName: name,
                 }).then(() => {
+                    fetch("http://localhost:5000/jwt", {
+                        method: "POST",
+                        headers: {
+                            "content-type": "application/json",
+                        },
+                        body: JSON.stringify({ email: user.email }),
+                    })
+                        .then((res) => res.json())
+                        .then((data) => {
+                            console.log(data);
+                            // set localStorage
+                            localStorage.setItem("camera-token", data.token);
+                            navigate('/')
+                        });
                     toast.success(`Information Updated`)
                     saveUserToDb(name, email, userType)
 
@@ -52,7 +67,25 @@ const Register = () => {
                 const email = user.email;
                 const userType = 'Buyer';
                 saveUserToDb(name, email, userType);
+                fetch("http://localhost:5000/jwt", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify({ email: user.email }),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log(data);
+                        // set localStorage
+                        localStorage.setItem("camera-token", data.token);
+                        navigate('/')
+                    });
                 toast.success('Google Login Successful')
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                toast.error(errorMessage)
             })
     }
 
@@ -70,7 +103,6 @@ const Register = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    navigate('/')
                 }
             })
             .catch(error => {

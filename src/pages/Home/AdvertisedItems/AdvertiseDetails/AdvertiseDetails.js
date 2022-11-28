@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../../../hooks/useTitle/useTitle';
 import BookNowModal from '../../../BookNowModal/BookNowModal';
 
 const AdvertiseDetails = () => {
     const advertise = useLoaderData()
     const { picture, resalePrice, postedTime, sellerName, yearsOfUse, originalPrice, location, name, description, _id } = advertise
+    useTitle(name)
     let [isOpen, setIsOpen] = useState(false)
     function openModal() {
         setIsOpen(true)
@@ -24,7 +26,7 @@ const AdvertiseDetails = () => {
     return (
         <>
             <div className="flex justify-center my-12">
-                <div className="flex flex-col md:flex-row rounded-lg bg-white shadow-lg gap-6">
+                <div className="flex flex-col md:flex-row rounded-lg bg-white shadow-lg gap-6 px-6">
                     <img className=" w-full h-96 md:h-auto md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg" src={picture} alt="" />
                     <div className="my-2">
                         <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer text-left">{name}</h1>

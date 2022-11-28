@@ -20,6 +20,7 @@ const BookNowModal = ({ isOpen, setIsOpen, product }) => {
         const productName = form.productName.value;
         const price = form.price.value;
         const location = form.location.value;
+        const productId = product._id;
         const phone = form.phone.value;
         const picture = product?.picture
 
@@ -30,7 +31,7 @@ const BookNowModal = ({ isOpen, setIsOpen, product }) => {
             productName,
             price,
             phone,
-            isSold: 'false',
+            productId,
             location
         }
         fetch('http://localhost:5000/bookings', {
@@ -104,10 +105,10 @@ const BookNowModal = ({ isOpen, setIsOpen, product }) => {
                                                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="price" type="number" defaultValue={product?.resalePrice} disabled />
                                                     </div>
                                                     <div className="mb-6">
-                                                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="phone" type="text" placeholder='Your Phone Number' />
+                                                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="phone" type="text" placeholder='Your Phone Number' required />
                                                     </div>
                                                     <div className="mb-6">
-                                                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="location" type="text" placeholder='Your Location' />
+                                                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="location" type="text" placeholder='Your Location' required />
                                                     </div>
                                                     <div className="mt-4">
                                                         <button

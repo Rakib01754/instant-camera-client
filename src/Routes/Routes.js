@@ -21,6 +21,7 @@ import BuyerRoute from '../pages/BuyerRoute/BuyerRoute';
 import AdvertiseDetails from '../pages/Home/AdvertisedItems/AdvertiseDetails/AdvertiseDetails';
 import AllProducts from '../pages/AllProducts/AllProducts';
 import ReportedItems from '../pages/ReportedItems/ReportedItems';
+import Payment from '../pages/Payment/Payment';
 
 
 const Routes = () => {
@@ -74,6 +75,14 @@ const Routes = () => {
                             path: '/dashboard/reporteditems',
                             element: <AdminRoute><ReportedItems></ReportedItems></AdminRoute>
                         },
+                        {
+                            path: '/dashboard/myorders/payment/:id',
+                            loader: ({ params }) =>
+                                fetch(
+                                    `http://localhost:5000/dashboard/payment/${params.id}`
+                                ),
+                            element: <BuyerRoute><Payment></Payment></BuyerRoute>
+                        }
                     ]
                 },
                 {

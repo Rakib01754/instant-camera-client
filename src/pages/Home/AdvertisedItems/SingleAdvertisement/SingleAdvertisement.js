@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 
 const SingleAdvertisement = ({ product }) => {
-    console.log(product)
-    const { picture, name, resalePrice, _id } = product
+    const { picture, name, resalePrice, _id, paid } = product
     return (
         <div>
-            <div className="bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
+            <div className={`bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500
+            ${paid && 'hidden'}`}>
 
                 <img className="w-full h-[300px] rounded-xl bg-gray-400" src={picture} alt={name} />
                 <h1 className="mt-2 text-gray-800 text-2xl font-bold cursor-pointer">{name}</h1>

@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../hooks/useTitle/useTitle';
 
+
 const Login = () => {
     useTitle('Login')
     const { signIn, googleSignIn, forgotPass } = useContext(AuthContext)
@@ -13,7 +14,6 @@ const Login = () => {
     const navigate = useNavigate()
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
-    console.log(location, from)
     const provider = new GoogleAuthProvider();
 
     // email password login 
@@ -22,8 +22,13 @@ const Login = () => {
         const password = data.password;
         signIn(email, password)
             .then(result => {
+                const user = result.user
+                console.log(user)
                 toast.success(`Successfully Logged In`)
                 navigate(from, { replace: true });
+
+
+
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -42,6 +47,7 @@ const Login = () => {
                 saveUserToDb(name, email, userType)
                 toast.success('Google Login Successful')
                 navigate(from, { replace: true });
+
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -77,7 +83,6 @@ const Login = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    console.log(data.acknowledged)
                 }
             })
             .catch(error => {

@@ -49,7 +49,7 @@ const SingleProductRow = ({ product, idx, refetch }) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`http://localhost:5000/advertise/${id}`, {
-                    method: 'PUT'
+                    method: 'PUT',
                 })
                     .then(res => res.json())
                     .then(data => {
