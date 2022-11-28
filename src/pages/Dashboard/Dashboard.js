@@ -1,4 +1,4 @@
-// import { useQuery } from '@tanstack/react-query';
+
 import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';

@@ -93,7 +93,7 @@ const Routes = () => {
                 {
                     path: 'advertisement/:advertiseId',
                     loader: ({ params }) => fetch(`http://localhost:5000/advertisement/${params.advertiseId}`),
-                    element: <AdvertiseDetails></AdvertiseDetails>
+                    element: <PrivateRoute><AdvertiseDetails></AdvertiseDetails></PrivateRoute>
                 }
 
             ]

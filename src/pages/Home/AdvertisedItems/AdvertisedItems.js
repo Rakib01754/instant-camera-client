@@ -12,7 +12,6 @@ const AdvertisedItems = () => {
             return data;
         }
     })
-    console.log(products)
     if (isLoading) {
         <Loader></Loader>
     }
