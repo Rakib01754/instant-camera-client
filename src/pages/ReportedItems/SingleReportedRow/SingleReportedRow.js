@@ -15,7 +15,7 @@ const SingleReportedRow = ({ item, refetch, idx }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/products/reported/${id}`, {
+                fetch(`https://assignment-12-server-theta.vercel.app/products/reported/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

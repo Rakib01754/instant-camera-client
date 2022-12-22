@@ -13,7 +13,7 @@ const SingleProduct = ({ product }) => {
     const [isVerified, setIsVerified] = useState('')
 
     const reportToAdmin = (id) => {
-        fetch(`http://localhost:5000/product/report/${id}`, {
+        fetch(`https://assignment-12-server-theta.vercel.app/product/report/${id}`, {
             method: 'PUT',
         })
             .then(res => res.json())
@@ -28,7 +28,7 @@ const SingleProduct = ({ product }) => {
 
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/verifiedseller?email=${email}`)
+            fetch(`https://assignment-12-server-theta.vercel.app/verifiedseller?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)

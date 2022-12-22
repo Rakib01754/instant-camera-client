@@ -17,7 +17,7 @@ const SingleProductRow = ({ product, idx, refetch }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/product/${id}`, {
+                fetch(`https://assignment-12-server-theta.vercel.app/product/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -48,7 +48,7 @@ const SingleProductRow = ({ product, idx, refetch }) => {
             confirmButtonText: 'Yes, Advertise it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/advertise/${id}`, {
+                fetch(`https://assignment-12-server-theta.vercel.app/advertise/${id}`, {
                     method: 'PUT',
                 })
                     .then(res => res.json())

@@ -3,6 +3,10 @@
 Live Website link: https://instant-camera-ff73c.web.app/
 
 
+## Admin credentials 
+adminEmail: admin@email.com <br/>
+adminPassword: admin123
+
 ## Details About This Project
 
  - This Project Is About Product Resale Related.
@@ -15,9 +19,7 @@ Live Website link: https://instant-camera-ff73c.web.app/
  - All The Codes are pushed on Github Private Repo
  - Finally This site hosted on Firebase
 
-adminEmail: admin@email.com
 
-adminPassword: admin123
 
 
 

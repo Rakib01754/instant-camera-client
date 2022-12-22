@@ -13,7 +13,7 @@ const AdvertiseDetails = () => {
         setIsOpen(true)
     }
     const reportToAdmin = (id) => {
-        fetch(`http://localhost:5000/product/report/${id}`, {
+        fetch(`https://assignment-12-server-theta.vercel.app/product/report/${id}`, {
             method: 'PUT',
         })
             .then(res => res.json())

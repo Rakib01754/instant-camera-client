@@ -15,7 +15,7 @@ const SingleSellersRow = ({ seller, idx, refetch }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/seller/${id}`, {
+                fetch(`https://assignment-12-server-theta.vercel.app/seller/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -45,7 +45,7 @@ const SingleSellersRow = ({ seller, idx, refetch }) => {
             confirmButtonText: 'Yes, Verify it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/seller/${id}`, {
+                fetch(`https://assignment-12-server-theta.vercel.app/seller/${id}`, {
                     method: 'PUT'
                 })
                     .then(res => res.json())

@@ -33,7 +33,7 @@ const Register = () => {
                     displayName: name,
                 })
                     .then(() => {
-                        fetch('http://localhost:5000/jwt', {
+                        fetch('https://assignment-12-server-theta.vercel.app/jwt', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
@@ -74,7 +74,7 @@ const Register = () => {
                 const currentUser = {
                     email: email
                 }
-                fetch("http://localhost:5000/jwt", {
+                fetch("https://assignment-12-server-theta.vercel.app/jwt", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
@@ -101,7 +101,7 @@ const Register = () => {
 
     const saveUserToDb = (name, email, userType) => {
         const registredUser = { name, email, userType }
-        fetch('http://localhost:5000/users', {
+        fetch('https://assignment-12-server-theta.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

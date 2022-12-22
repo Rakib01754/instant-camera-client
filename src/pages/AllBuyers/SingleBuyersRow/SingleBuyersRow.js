@@ -15,7 +15,7 @@ const SingleBuyersRow = ({ buyer, idx, refetch }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/buyer/${id}`, {
+                fetch(`https://assignment-12-server-theta.vercel.app/buyer/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

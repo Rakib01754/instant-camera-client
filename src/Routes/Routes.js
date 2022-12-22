@@ -79,7 +79,7 @@ const Routes = () => {
                             path: '/dashboard/myorders/payment/:id',
                             loader: ({ params }) =>
                                 fetch(
-                                    `http://localhost:5000/dashboard/payment/${params.id}`
+                                    `https://assignment-12-server-theta.vercel.app/dashboard/payment/${params.id}`
                                 ),
                             element: <BuyerRoute><Payment></Payment></BuyerRoute>
                         }
@@ -91,17 +91,17 @@ const Routes = () => {
                 },
                 {
                     path: 'allproducts',
-                    loader: () => fetch(`http://localhost:5000/products`),
+                    loader: () => fetch(`https://assignment-12-server-theta.vercel.app/products`),
                     element: <PrivateRoute><AllProducts></AllProducts></PrivateRoute>
                 },
                 {
                     path: 'category/:categoryId',
-                    loader: ({ params }) => fetch(`http://localhost:5000/products/${params.categoryId}`),
+                    loader: ({ params }) => fetch(`https://assignment-12-server-theta.vercel.app/products/${params.categoryId}`),
                     element: <PrivateRoute><Products></Products></PrivateRoute>
                 },
                 {
                     path: 'advertisement/:advertiseId',
-                    loader: ({ params }) => fetch(`http://localhost:5000/advertisement/${params.advertiseId}`),
+                    loader: ({ params }) => fetch(`https://assignment-12-server-theta.vercel.app/advertisement/${params.advertiseId}`),
                     element: <PrivateRoute><AdvertiseDetails></AdvertiseDetails></PrivateRoute>
                 }
 

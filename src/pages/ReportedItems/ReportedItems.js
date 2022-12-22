@@ -9,7 +9,7 @@ const ReportedItems = () => {
     const { data: reportedItems = [], refetch, isLoading } = useQuery({
         queryKey: [' reportedItems'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/reported`, {
+            const res = await fetch(`https://assignment-12-server-theta.vercel.app/reported`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('token')}`
                 }

@@ -13,7 +13,7 @@ const MyProducts = () => {
     const { data: myProducts = [], refetch, isLoading } = useQuery({
         queryKey: [' myProducts', email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myproducts?email=${email}`, {
+            const res = await fetch(`https://assignment-12-server-theta.vercel.app/myproducts?email=${email}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('token')}`
                 }
